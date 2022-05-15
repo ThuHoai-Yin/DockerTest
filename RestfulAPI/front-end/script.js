@@ -18,7 +18,6 @@ function loadBook(){
             <td>${book.id}</td>
             <td>${book.name}</td>
             <td>${book.author}</td>
-            <td><button onclick="()=>deleteBook(${book})">Delete</button></td>
             </tr>
             `
         })
@@ -30,10 +29,6 @@ function loadBook(){
     })
 }
 
-function test(){
-    console.log("test")
-}
-loadBook()
 function handleCreateForm(){
     var submit = document.querySelector('input[type="submit"]')
    

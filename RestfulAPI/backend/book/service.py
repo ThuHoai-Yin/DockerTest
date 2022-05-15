@@ -1,12 +1,15 @@
 from queue import Empty
 from flask import request
 from backend.extension import db
-from backend.library_ma import BookSchema
-from backend.model import Book
+from backend.library_ma import BookSchema,FileSchema
+from backend.model import Book,File
 import json
 
+file_schema=FileSchema
+files_schema=FileSchema(many=True)
 book_schema= BookSchema
 books_schema = BookSchema(many=True)
+
 
 def addBook():
     try:
@@ -55,3 +58,17 @@ def deleteBook():
         return "Deleted"
     except:
         return " Can not delete "
+
+def uploadFile(filename):
+    try: 
+        new_file=File(filename)
+        db.session.add(new_file)
+        db.session.commit()
+    except:
+        return "Can not add file"
+    
+def getFile():
+    files=File.query.all()
+    if files is None:
+        return "Empty"
+    return files_schema.jsonify(files)

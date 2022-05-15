@@ -5,3 +5,7 @@ class BookSchema(ma.Schema):
     class Meta:
         fields=('id','name','author')
         
+class FileSchema(ma.Schema):
+    class Meta:
+        fields= ('id','filename')
+        
